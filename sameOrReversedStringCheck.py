@@ -11,12 +11,11 @@ def sameOrReversedStringCheck(s):
     s=s.strip()
     for i in range(1,len(s)):
         for j in range(len(s)-i+1):
-            if i == 3:
-                s1=s[j:j+i]
-                for x in range(j+1,len(s)-i+1):
-                    s2=s[x:x+i]
-                    if s1==''.join(s2[::-1]) or s1 == s2:
-                        map[s1] = map.get(s1,0) + 1
+            s1=s[j:j+i]
+            for x in range(j+1,len(s)-i+1):
+                s2=s[x:x+i]
+                if s1==''.join(s2[::-1]) or s1 == s2:
+                    map[s1] = map.get(s1,0) + 1
     num=0
     for tmp_str in map:
         num += map[tmp_str]
