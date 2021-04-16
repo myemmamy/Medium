@@ -9,9 +9,13 @@
 def sameOrReversedStringCheck(s):
     map={}
     s=s.strip()
+    # i is the length of the substring, starting from 1 and ending at len(s)
     for i in range(1,len(s)):
+        #j is the position of the substring, starting from 0 and ending at len(s)
         for j in range(len(s)-i+1):
+            #get the substring for checking
             s1=s[j:j+i]
+            #get each of other substring you want to compare with the current s1. you don't compare backwords, just compare forward. so starting at j+1
             for x in range(j+1,len(s)-i+1):
                 s2=s[x:x+i]
                 if s1==''.join(s2[::-1]) or s1 == s2:
