@@ -1,0 +1,27 @@
+# a medium problem from harkerrank
+# Two strings are anagrams of each other if the letters of one string can be rearranged to form the other string. Given a string, find the number of pairs of substrings of the string that are anagrams of each other.
+# Example
+# The list of all anagrammatic pairs is  at positions  respectively.
+# Function Description
+# Complete the function sherlockAndAnagrams in the editor below.
+# sherlockAndAnagrams has the following parameter(s):
+# string s: a string
+# Returns int: the number of unordered anagrammatic pairs of substrings in s
+# 
+# Example:
+# 'ifailuhkqq', return is 3
+# For the first query, we have anagram pairs (i,i), (q,q) and (ifa,fai) at positions (0,3), (8,9) and ([0,1,2],[1,2,3]) respectively.
+
+def sherlockAndAnagrams(s):
+    num_dict={}
+    for i in range(1,len(s)):
+        for j in range(len(s)-i+1):
+            s1=''.join(sorted(s[j:j+i]))
+            num_dict[s1] = num_dict.get(s1,0) + 1
+    num=0
+    for i in num_dict:
+        num += int(num_dict[i] * (num_dict[i]-1) / 2)
+    return num
+
+if __name__ == '__main__':
+    print(sherlockAndAnagrams('kkkk'))
