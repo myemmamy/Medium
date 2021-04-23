@@ -17,8 +17,6 @@ def activityNotifications(expenditure, d):
     sortedarr = sorted(expenditure[:d])
     for i in range(d,len(expenditure)):
         median = sortedarr[index] if d % 2 != 0 else (sortedarr[index-1]+sortedarr[index])/2
-        if i == 19900:
-            a=expenditure[i]
         a=expenditure[i]
         if expenditure[i] >= median*2:
             nums += 1
