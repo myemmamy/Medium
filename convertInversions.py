@@ -28,6 +28,9 @@
 
 #below is use recursion to resolve the problem, but doesn't match harkerrank's time limitation
 
+####
+#method 1 recursoin
+####
 class Inverse:
     def __init__(self,arr):
         self.arr=arr
@@ -60,3 +63,26 @@ if __name__ == '__main__':
 
         result = countInversions(arr)
         print(result)
+        
+####
+#method 2, no recursion, 2 loops
+#each time a swap may cause additional swap to prior items since the prior items are already sorted, but the new swap may bring a new smaller item
+#for the internal loop, doesn't need to swap, just need to check how many items bigger than the current arr[i] is fine, 
+#since the items before i are already checked and counted for swap steps
+#but still exceed time limitation
+####
+def countInversions(arr):
+    def swap(arr,i,j):
+        if i != j:
+            arr[i],arr[j]=arr[j],arr[i]
+            return 1
+        else:
+            return 0
+    steps=0
+    for i in range(len(arr)-1):
+        if arr[i] > arr[i+1]:
+            steps += swap(arr,i,i+1)
+            for j in range(i-1,-1,-1):
+                if arr[j] > arr[i]:
+                    steps += 1
+    return steps
