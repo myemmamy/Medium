@@ -86,3 +86,27 @@ def countInversions(arr):
                 if arr[j] > arr[i]:
                     steps += 1
     return steps
+
+####
+#method 3, above is O(n^2)
+#try to make as O(nlogn), then use bisect, but still 4 cases time exceeded
+####
+import bisect
+def countInversions(arr):
+    def swap(arr,i,j):
+        if i != j:
+            arr[i],arr[j]=arr[j],arr[i]
+            return 1
+        else:
+            return 0
+    steps=0
+    newarr=[]
+    for i in range(len(arr)-1):
+
+        if arr[i] > arr[i+1]:
+            steps += swap(arr,i,i+1)
+            if i > 0:
+                index = bisect.bisect(newarr,arr[i])
+                steps += i-index
+        bisect.insort(newarr, arr[i])
+    return steps
